@@ -1,19 +1,28 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import NavBar from "./components/NavBar";
+import Jumbotron from './components/Jumbotron';
+import Search from "./pages/Search";
+import Saved from "./pages/Saved";
 import "./App.css";
+import('normalize.css');
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+
+       <div>
+          <Router>
+             <NavBar>
+                <Switch>
+                  <Route exact path="/search" component={Search}>Search</Route>
+                  <Route path="/saved" component={Saved}>Saved</Route>
+                </Switch>
+             </NavBar>
+          </Router>
+          <Jumbotron />
+
+       </div> 
     );
   }
 }

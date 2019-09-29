@@ -1,0 +1,21 @@
+.nav-container {
+    border: 2px solid black;
+    box-shadow: 2px 2px 10px darkslategray;
+}
+
+.nav-list {
+    display: flex;
+    font-size: 20px;
+    list-style: none;
+    padding-left: 20px;
+}
+li {
+    position: relative;
+
+}
+
+.nav-link {
+    text-decoration: none;
+    padding: 10px;
+    color: #022140;
+}
