@@ -3,9 +3,9 @@
 
 module.exports = function (app) {
 
-    app.get("/", (req,res) => {
-        res.json("something");
-    })
+    // app.get("/search", (req,res) => {
+    //     res.json("something");
+    // })
 
 
 

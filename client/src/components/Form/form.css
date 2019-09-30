@@ -1,0 +1,14 @@
+.search-heading {
+    margin-left: 30px;
+}
+.search-input {
+    width: 95%;
+    margin-left: 30px;
+}
+
+.search-btn {
+    width: 10%;
+    float: right;
+    margin-right: 30px;
+    margin-top: 15px;
+}
