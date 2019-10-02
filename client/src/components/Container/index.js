@@ -1,7 +1,7 @@
 import React from 'react';
 import './container.css';
 
-const Container = (props) => {
+function Container(props) {
     return(
     <div className="search-container">{props.children}</div>
     );

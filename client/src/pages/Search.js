@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NavBar from '../components/NavBar';
 import Jumbotron from '../components/Jumbotron';
 import Container from '../components/Container';
 import Form from '../components/Form';
@@ -10,44 +9,61 @@ import API from '../utils/Api';
 class Search extends Component {
 
     state = {
-        result: [],
-        search: ""
+        books: [],
+        query: ""
     }
 
-    componentDidMount() {
-        this.searchBook("To Kill A Mocking Bird");
-    }
 
-    searchBook = query => {
+    // searchBooks = () => {
+    //     let URL = "https://www.googleapis.com/books/v1/volumes?q=" + this.state.query;
+    //     axios
+    //         .get(URL)
+    //         .then(res => {
+    //             //console.log(res);
+    //             this.setState({
+    //                 books: res.data.items
+    //             });
+    //             console.log(this.state.books)
+    //         })
+    //         .catch(err => console.log(err));
+    // };
 
-        API.search(query)
-            .then(res => this.setState({ result: res.data }))
-            .catch(err => console.log(err));
-    };
 
     handleInputChange = event => {
-        const { name, value } = event.target;
+        const name = event.target.name;
+        const value = event.target.value;
         this.setState({
+
             [name]: value
         });
     };
 
     handleFormSubmit = event => {
         event.preventDefault();
-        this.searchBook(this.state.search);
 
+        API.searchBooks(this.state.query)
+            .then(res => {
+
+                this.setState({
+                    books: res.data.items
+                })
+                this.setState({
+                    query: ""
+                })
+                console.log(this.state.books);
+            })
+            .catch(err => console.log(err));
     }
 
 
     render() {
         return (
             <div className="main-container">
-                <NavBar />
                 <Jumbotron />
 
                 <Container>
                     <Form
-                        name={this.state.value}
+                        value={this.value}
                         onChange={this.handleInputChange}
                         onClick={this.handleFormSubmit}
                     />

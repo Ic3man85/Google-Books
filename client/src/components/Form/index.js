@@ -2,20 +2,21 @@ import React from 'react';
 import './form.css';
 
 
-const Form = (props) => {
+function Form(props) {
     return (
         <form>
             <h1 className="search-heading">Book Search</h1>
 
             <input
                 type="text"
-                name="Search"
-                value={props.query}
-                onChange={props.handleInput}
+                name="query"
+                value={props.value}
+                onChange={props.handleInputChange}
                 className="search-input"
                 placeholder="Search for a book"
+                id="search"
             />
-            <button type="submit" className="search-btn" onClick={props.handleSubmitForm}>
+            <button type="submit" className="search-btn" onClick={props.handleFormSubmit}>
                 Search
             </button>
         </form>

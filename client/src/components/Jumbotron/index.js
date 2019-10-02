@@ -3,7 +3,7 @@ import './jumbotron.css';
 
 
 
-const Jumbotron = () => {
+function Jumbotron() {
     return(
     <div className="jumbotron-container">
             <h1 className="jumbo-title">(React) Google Books Search</h1>
