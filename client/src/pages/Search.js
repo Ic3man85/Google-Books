@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Jumbotron from '../components/Jumbotron';
 import Container from '../components/Container';
 import Form from '../components/Form';
+import BookDetail from "../components/BookDetails";
 import API from '../utils/Api';
 
 
@@ -14,27 +15,10 @@ class Search extends Component {
     }
 
 
-    // searchBooks = () => {
-    //     let URL = "https://www.googleapis.com/books/v1/volumes?q=" + this.state.query;
-    //     axios
-    //         .get(URL)
-    //         .then(res => {
-    //             //console.log(res);
-    //             this.setState({
-    //                 books: res.data.items
-    //             });
-    //             console.log(this.state.books)
-    //         })
-    //         .catch(err => console.log(err));
-    // };
-
-
     handleInputChange = event => {
-        const name = event.target.name;
-        const value = event.target.value;
         this.setState({
 
-            [name]: value
+            query: event.target.value
         });
     };
 
@@ -42,15 +26,12 @@ class Search extends Component {
         event.preventDefault();
 
         API.searchBooks(this.state.query)
-            .then(res => {
-
+            .then(response => {
                 this.setState({
-                    books: res.data.items
-                })
-                this.setState({
+                    books: response,
                     query: ""
                 })
-                console.log(this.state.books);
+                // console.log(this.state.books)
             })
             .catch(err => console.log(err));
     }
@@ -63,10 +44,24 @@ class Search extends Component {
 
                 <Container>
                     <Form
-                        value={this.value}
-                        onChange={this.handleInputChange}
-                        onClick={this.handleFormSubmit}
+                        inputValue={this.state.query}
+                        handleInputChange={this.handleInputChange}
+                        handleFormSubmit={this.handleFormSubmit}
                     />
+                </Container>
+                <Container>
+
+                    {this.state.books.map((book,index) => (
+                        <BookDetail
+                            key={index}
+                            title={book.volumeInfo.title}
+                            authors={book.volumeInfo.authors}
+                            link={book.volumeInfo.previewLink}
+                            image={book.thumbnail}
+                            description={book.textSnippet}
+                        />
+                    )
+                    )}
                 </Container>
             </div>
 
